@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{fragments/header :: header}"></head>
+<body>
+    <!-- Incluir el menú de navegación -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	        <div class="container-fluid">
+	            <a class="navbar-brand" href="#">TP DESI - Ietri Mangoldt Palmier</a>
+	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse" id="navbarNav">
+	                <ul class="navbar-nav me-auto">
+	                    <li class="nav-item">
+	                        <a class="nav-link" th:href="@{/}" aria-current="page">Inicio</a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	  </nav>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Bienvenido a la Página Principal</h1>
+        <p>Usa la barra de navegación para acceder a las diferentes pantallas de la aplicación.</p>
+    </div>
+
+    <!-- Incluir el footer -->
+    <div th:include="~{fragments/footer :: footer}"></div>
+</body>
+</html>
