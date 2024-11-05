@@ -1,0 +1,21 @@
+<!DOCTYPE html">
+<html xlmns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title> Crear Ciudad </title>
+</head>
+<h1> Gestión de Ciudades - Crear Ciudad </h1>
+
+<form th:action="crear" th:method="post" th:object="${ciudadForm}">
+	<label for="nombre">Nombre: </label>
+	<input type="text" th:field="*{nombre}">
+	
+	<label for="codigoPostal">Código postal: </label>
+	<input type="text" th:field="*{codigoPostal}">
+	
+	<button type="submit"> Crear </button>
+
+</form>
+
+
+</html>
