@@ -14,10 +14,10 @@ public class EstadoCamino {
     @JoinColumn(name = "id_camino", nullable = false)
     private Camino camino;
 
-    @Column(name = "estado_camino", length = 50)
+    @Column(name = "estadoCamino", length = 50)
     private String estadoCamino;
 
-    @Column(name = "estado_clima", length = 50)
+    @Column(name = "estadoClima", length = 50)
     private String estadoClima;
 
    
