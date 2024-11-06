@@ -50,7 +50,11 @@
 					
 						<div class="form-group">
 							<label>Ciudad actual: </label>
-							<input type="text" name="ciudadActual" th:field="*{ciudadActual}" class="form-control" placeholder="Ingrese la ciudad actual" required>	
+							<select th:field="*{idProvincia}">
+									          <option th:each="c : ${allCiudades}" 
+											          th:value="${c.id}" 
+											          th:text="${c.nombre}"></option>
+											</select>	
 						</div>
 						
 						<br>

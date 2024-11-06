@@ -1,33 +1,10 @@
 package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model;
 import jakarta.persistence.*;
-<<<<<<< HEAD
-
-@Entity
-@Table(name = "ciudad")
-public class Ciudad {
-
-    @Id
-    @Column(name = "codigo_postal")
-    private Integer codigoPostal;
-
-    @Column(name = "nombre", length = 100, nullable = false)
-    private String nombre;
-
-  
-}
-=======
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
-@Getter
-@Setter
 @Table(name = "ciudad")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Ciudad {
 
     @Id
@@ -41,6 +18,16 @@ public class Ciudad {
     @Column(name = "nombre", length = 100, nullable = false)
     @NotNull(message = "El nombre de la ciudad es requerido")
     private String nombre;
+   
+    
+    public Integer getId() {
+    	return id;
+    }
+    
+    public void setId(Integer _id) 
+    {
+    	this.id = _id;
+    }
     
     public Integer getCodigoPostal() {
     	return codigoPostal;
@@ -67,4 +54,3 @@ public class Ciudad {
                '}';
     }
 }
->>>>>>> branch 'agostina' of https://github.com/rpalmier/IetriMangoldtPalmier.git

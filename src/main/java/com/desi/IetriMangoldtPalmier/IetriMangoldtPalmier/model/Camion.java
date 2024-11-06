@@ -1,34 +1,13 @@
 package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model;
 
-<<<<<<< HEAD
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "camion")
-public class Camion {
-
-    @Id
-    @Column(name = "patente", length = 10)
-    private String patente;
-
-    @Column(name = "marca", length = 50, nullable = false)
-    private String marca;
-
-    @Column(name = "modelo")
-    private Integer modelo;
-
-    @ManyToOne
-    @JoinColumn(name = "ciudad_actual")
-    private Ciudad ciudadActual;
-
-   
-}
-=======
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -53,15 +32,17 @@ public class Camion {
     @NotNull(message = "El modelo es requerido.")
     private String modelo;
 
-    @Column(name = "ciudad_actual", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "ciudad_actual")
     @NotNull(message = "La ciudad actual es requerida.")
-    private String ciudadActual;
+    private Ciudad ciudadActual;
+    
 
     // Constructor con todos los atributos
     public Camion(@NotNull(message = "La patente es requerida.") String patente,
                   @NotNull(message = "La marca es requerida.") String marca,
                   @NotNull(message = "El modelo es requerido.") String modelo,
-                  @NotNull(message = "La ciudad actual es requerida.") String ciudadActual) {
+                  @NotNull(message = "La ciudad actual es requerida.") Ciudad ciudadActual) {
         this.patente = patente;
         this.marca = marca;
         this.modelo = modelo;
@@ -106,13 +87,12 @@ public class Camion {
     }
     
     
-    public String getCiudadActual() {
+    public Ciudad getCiudadActual() {
         return ciudadActual;
     }
 
-    public void setCiudadActual(String ciudadActual) {
+    public void setCiudadActual(Ciudad ciudadActual) {
 		 this.ciudadActual = ciudadActual;
     }
 }
 
->>>>>>> branch 'agostina' of https://github.com/rpalmier/IetriMangoldtPalmier.git

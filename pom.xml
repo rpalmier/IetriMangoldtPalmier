@@ -57,18 +57,10 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
 		<dependency>
-		    <groupId>jakarta.validation</groupId>
-		    <artifactId>jakarta.validation-api</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <scope>provided</scope>
-		</dependency>
->>>>>>> branch 'agostina' of https://github.com/rpalmier/IetriMangoldtPalmier.git
 	</dependencies>
 
 	<build>
