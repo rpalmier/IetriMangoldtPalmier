@@ -8,7 +8,7 @@ public class Camino {
 
     @Id
     @Column(name = "id_camino", length = 10)
-    private String idCamino;
+    private Integer idCamino;
 
     @ManyToOne
     @JoinColumn(name = "ciudad_origen")
