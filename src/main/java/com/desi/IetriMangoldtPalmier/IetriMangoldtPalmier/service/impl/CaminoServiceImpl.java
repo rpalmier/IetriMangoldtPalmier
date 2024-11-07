@@ -1,4 +1,4 @@
-package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service;
+package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.impl;
 
 import java.util.List;
 
@@ -9,9 +9,10 @@ import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camino;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CaminoRepository;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CiudadRepository;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.EstadoCaminoRepository;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CaminoService;
 
 @Service
-public class CaminioService {
+public class CaminoServiceImpl implements CaminoService {
 
 	@Autowired
 	private CaminoRepository caminoRepository;

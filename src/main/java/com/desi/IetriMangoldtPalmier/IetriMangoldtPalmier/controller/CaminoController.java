@@ -1,18 +1,31 @@
 package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.controller;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camino;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CaminoRepository;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CaminoService;
 
 @Controller
 @RequestMapping("/caminos")
 public class CaminoController {
-	private final CaminioService caminoService;
+	private final CaminoService caminoService;
 
     @Autowired
-    public CaminoController(CaminioService caminoService) {
+    public CaminoController(CaminoService caminoService) {
         this.caminoService = caminoService;
     }
     
-    @GetMapping("/")
+    @GetMapping("")
     public String index() {
     	return "camino";
     }
