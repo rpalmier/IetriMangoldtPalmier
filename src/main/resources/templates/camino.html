@@ -13,14 +13,21 @@
     <div class="container mt-4">
     <h1>Consultar Caminos Vecinos</h1>
     
-    <form th:action="@{/caminos/vecinos}" class="row row-cols-lg-auto g-3 align-items-center" method="get">
-    	<div class="col-12">
-        	<label class="visually-hidden" for="codigoPostal">Código Postal de Origen:</label>
-        	<input type="text" class="form-control" id="codigoPostal" name="codigoPostal" placeholder="Código Postal de Origen:" required maxlength="4">
-        	
+    <form th:action="@{/caminos}" th:object="${formBean}" class="row g-3" method="post">
+		
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="col-12 alert alert-danger" role="alert"  />
+		<div class="col-3">
+			
+	
+        	<label class="form-label" for="codigoPostal">Código Postal de Origen:</label>
+        	<input type="text" class="form-control" id="codigoPostal" th:field="*{codpost}" placeholder="Código Postal de Origen:" required maxlength="4">
+			<p th:if="${#fields.hasErrors('codpost')}" th:errorclass="col-12 invalid-feedback" th:errors="*{codpost}" />
+	
+
         </div>
-        <div class="col-12">
-        	<button type="submit" class="btn btn-primary">Consultar</button>
+        <div class="col-3">
+        	<input type="submit"  name="action"  value="Buscar" class="btn btn-primary"></input>
+			<input type="submit"  name="action"  value="Cancelar" class="btn btn-danger"></input>
         </div>
     </form>
 
@@ -36,11 +43,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="camino : ${caminos}">
-                    <td th:text="${camino.id}">ID Camino</td>
-                    <td th:text="${camino.ciudadDestino.nombre}">Ciudad Destino</td>
-                    <td th:text="${camino.estadoCamino}">Estado del Camino</td>
-                    <td th:text="${camino.estadoClima}">Estado del Clima</td>
+                <tr th:each="c : ${caminos}">
+                    <td th:text="${c.id}">ID Camino</td>
+                    <td th:text="${c.ciudadDestino.nombre}">Ciudad Destino</td>
+                    <td th:text="${c.estadoCamino}">Estado del Camino</td>
+                    <td th:text="${c.estadoClima}">Estado del Clima</td>
                 </tr>
             </tbody>
         </table>
