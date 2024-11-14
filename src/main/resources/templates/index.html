@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{fragments/header :: header}"></head>
+<body>
+    <!-- Incluir el menú de navegación -->
+	<div th:replace="~{fragments/navbar :: navbar}">
+		
+	 </div>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>Bienvenido a la Página Principal</h1>
+        <p>Usa la barra de navegación para acceder a las diferentes pantallas de la aplicación.</p>
+
+    </div>
+
+    <!-- Incluir el footer -->
+    <div th:include="~{fragments/footer :: footer}"></div>
+</body>
+</html>
