@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.DTO.EstadoCamino;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.forms.CaminosVecinosForm;
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camino;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Tramo;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CaminoRepository;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CaminoService;
 
@@ -50,7 +51,7 @@ public class CaminoController {
     			return "camino";
     		}
 	    	try {
-	            List<Camino> caminos = caminoService.getCaminosByCiudadOrigen(formBean.getCodpost());
+	            List<EstadoCamino> caminos = caminoService.getCaminosByCiudadOrigen(formBean.getCodpost());
 	            modelo.addAttribute("caminos", caminos);
 	            return "camino";
 	        } catch (IllegalArgumentException e) {;

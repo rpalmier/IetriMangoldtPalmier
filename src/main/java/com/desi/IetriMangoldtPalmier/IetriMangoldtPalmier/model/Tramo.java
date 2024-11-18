@@ -4,12 +4,23 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "camino")
-public class Camino {
+public class Tramo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 10)
     private Integer id;
+    
+    @Column(name = "identificador", length = 10)
+    private String identificador;
+    
+    public enum TipoCalzada{
+    	TIERRA, RIPIO, ASFALTO
+    }
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_calzada", length = 10)
+    private TipoCalzada tipo_calzada;
 
     @ManyToOne
     @JoinColumn(name = "ciudad_origen")
@@ -18,12 +29,6 @@ public class Camino {
     @ManyToOne
     @JoinColumn(name = "ciudad_destino")
     private Ciudad ciudadDestino;
-
-    @Column(name = "estado_camino", length = 50)
-    private String estadoCamino;
-
-    @Column(name = "estado_clima", length = 50)
-    private String estadoClima;
     
     public Integer getId() {
     	return id;
@@ -49,20 +54,20 @@ public class Camino {
     	ciudadDestino = _ciudadDestino;
     }
 
-    public String getEstadoCamino() {
-    	return estadoCamino ;
+    public String getIdentificador() {
+    	return identificador;
     }
     
-    public void setEstadoCamino(String _estadoCamino) {
-    	estadoCamino = _estadoCamino;
+    public void setIdentificador(String _identificador) {
+    	identificador = _identificador;
     }
     
-    public String getEstadoClima() {
-    	return estadoClima ;
+    public TipoCalzada getTipoCalzada() {
+    	return tipo_calzada;
     }
     
-    public void setEstadoClima(String _estadoClima) {
-    	estadoClima = _estadoClima;
+    public void setTipoCalzada(TipoCalzada _tipo) {
+    	tipo_calzada = _tipo;
     }
     
    }

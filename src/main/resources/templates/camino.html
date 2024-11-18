@@ -20,8 +20,8 @@
 			
 	
         	<label class="form-label" for="codigoPostal">Código Postal de Origen:</label>
-        	<input type="text" class="form-control" id="codigoPostal" th:field="*{codpost}" placeholder="Código Postal de Origen:" required maxlength="4">
-			<p th:if="${#fields.hasErrors('codpost')}" th:errorclass="col-12 invalid-feedback" th:errors="*{codpost}" />
+        	<input type="text" class="form-control" id="codigoPostal" th:field="*{codpost}" placeholder="Código Postal de Origen:"  maxlength="4">
+			<div th:if="${#fields.hasErrors('codpost')}" class="col-12 invalid-feedback" th:errors="*{codpost}" />
 	
 
         </div>
@@ -33,21 +33,24 @@
 
     <div class="mt-5" th:if="${caminos}">
         <h2>Resultados</h2>
+		<h3>Ciudad origen: <span th:text="${caminos[0].ciudadOrigen.nombre}" /> - Clima actual: <span th:text="${caminos[0].ciudadDestino.climaActual}" /></h3>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID Camino</th>
                     <th scope="col">Ciudad Destino</th>
+					<th scope="col">Estado del Clima</th>
                     <th scope="col">Estado del Camino</th>
-                    <th scope="col">Estado del Clima</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="c : ${caminos}">
-                    <td th:text="${c.id}">ID Camino</td>
+                    <td th:text="${c.identificadorTramo}">ID Camino</td>
                     <td th:text="${c.ciudadDestino.nombre}">Ciudad Destino</td>
+					<td th:text="${c.ciudadDestino.climaActual}">Estado del Clima</td>
                     <td th:text="${c.estadoCamino}">Estado del Camino</td>
-                    <td th:text="${c.estadoClima}">Estado del Clima</td>
+                    
                 </tr>
             </tbody>
         </table>

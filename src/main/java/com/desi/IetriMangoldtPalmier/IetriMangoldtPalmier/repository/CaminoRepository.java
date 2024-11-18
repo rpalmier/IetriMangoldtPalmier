@@ -6,11 +6,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camino;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Tramo;
 
-public interface CaminoRepository extends JpaRepository<Camino, Integer> {
+public interface CaminoRepository extends JpaRepository<Tramo, Integer> {
 
-	@Query("select c from Camino c where c.ciudadOrigen.codigoPostal =?1")
-	List<Camino> findByCiudadOrigen(Integer codigoPostal);
+	@Query("select c from Tramo c where c.ciudadOrigen.codigoPostal =?1")
+	List<Tramo> findByCiudadOrigen(Integer codigoPostal);
 	
 }

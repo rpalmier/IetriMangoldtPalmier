@@ -1,4 +1,6 @@
 package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Tramo.TipoCalzada;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,7 +20,14 @@ public class Ciudad {
     @Column(name = "nombre", length = 100, nullable = false)
     @NotNull(message = "El nombre de la ciudad es requerido")
     private String nombre;
-   
+    
+    public enum TipoClima{
+    	OPTIMO, LLUVIA, NIEVE_INTENSA, TORMENTOSO
+    }
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "clima_actual", length = 20)
+    private TipoClima clima_actual;
     
     public Integer getId() {
     	return id;
@@ -43,6 +52,14 @@ public class Ciudad {
     
     public void setNombre(String nombre) {
     	this.nombre = nombre;
+    }
+    
+    public TipoClima getClimaActual(){
+    	return clima_actual;
+    }
+    
+    public void setClimaActuaal(TipoClima _climaActual) {
+    	clima_actual = _climaActual;
     }
     
     @Override
