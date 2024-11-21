@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Gestión de Camiones - Editar</title>
+<head th:replace="~{fragments/header :: header}"></head>
+</head>
+
+<body>
+	
+	<!-- Incluir el menú de navegación -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+			
+				<h1 class="text-center">Edición de Camión</h1>
+				<div class="card-body">
+					<form th:action="@{/camiones/{id}(id=${camion.id})}" th:object="${camion}" method="POST">
+						<div class="form-group">
+							<label>Marca: </label>
+							<input type="text" name="marca" th:field="*{marca}" class="form-control" placeholder="Ingrese la marca" required>	
+						</div>
+						
+						<br>
+						
+						<div class="form-group">
+							<label>Modelo: </label>
+							<input type="text" name="modelo" th:field="*{modelo}" class="form-control" placeholder="Ingrese el modelo" required>	
+						</div>
+						
+						<br>
+						
+						<div class="form-group">
+							<label>Patente: </label>
+							<input type="text" name="patente" th:field="*{patente}" class="form-control" placeholder="Ingrese la patente" required>	
+						</div>						
+
+						<br>
+					
+						<div class="form-group">
+							<label>Ciudad actual: </label>
+							<select th:field="*{idCiudad}">
+									          <option th:each="c : ${allCiudades}" 
+											          th:value="${c.id}" 
+											          th:text="${c.nombre}"></option>
+											</select>	
+						</div>
+						
+						<br>
+						
+						<div class="box-footer">
+							<button class="btn btn-success">Guardar cambios</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Incluir el footer -->
+	<div th:include="~{fragments/footer :: footer}"><
+</body>
+
+</html>

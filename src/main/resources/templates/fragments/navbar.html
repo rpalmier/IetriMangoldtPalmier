@@ -12,6 +12,22 @@
 			                    <li class="nav-item">
 			                        <a class="nav-link" th:href="@{/}" aria-current="page">Inicio</a>
 			                    </li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Gestión de camniones
+									</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item">
+											<a class="nav-link" th:href="@{/camiones}">Camiones</a>
+										</li>
+										<li class="dropdown-item">
+											<a class="nav-link" th:href="@{/camiones/nuevo}">Agregar Camión</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" th:href="@{/caminos}" aria-current="page">Consulta caminos</a>
+								</li>
 			                </ul>
 			            </div>
 			        </div>

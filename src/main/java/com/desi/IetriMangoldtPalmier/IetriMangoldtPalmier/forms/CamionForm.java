@@ -1,56 +1,47 @@
-package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model;
+package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.forms;
 
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camion;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Ciudad;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "camion")
-public class Camion {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", length = 10, unique = true, nullable = false)
+public class CamionForm {
+	
     private Integer id;
 
-    @Column(name = "patente", length = 10, unique = true, nullable = false)
+    
     @NotNull(message = "La patente es requerida.")
     private String patente;
 
-    @Column(name = "marca", length = 50, nullable = false)
+    
     @NotNull(message = "La marca es requerida.")
     private String marca;
 
-    @Column(name = "modelo", nullable = false)
+    
     @NotNull(message = "El modelo es requerido.")
     private String modelo;
 
-    @ManyToOne
-    @JoinColumn(name = "ciudad_actual")
+    
     @NotNull(message = "La ciudad actual es requerida.")
-    private Ciudad ciudadActual;
+    private Integer idCiudad;
     
 
     // Constructor con todos los atributos
-    public Camion(@NotNull(message = "La patente es requerida.") String patente,
-                  @NotNull(message = "La marca es requerida.") String marca,
-                  @NotNull(message = "El modelo es requerido.") String modelo,
-                  @NotNull(message = "La ciudad actual es requerida.") Ciudad ciudadActual) {
-        this.patente = patente;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.ciudadActual = ciudadActual;
+    public CamionForm(Camion c) {
+    	this.id = c.getId();
+        this.patente = c.getPatente();
+        this.marca = c.getMarca();
+        this.modelo = c.getModelo();
     }
 
     // Constructor vacío
-    public Camion() {
+    public CamionForm() {
     }
 
     // Getters y Setters
@@ -87,12 +78,21 @@ public class Camion {
     }
     
     
-    public Ciudad getCiudadActual() {
-        return ciudadActual;
+    public Integer getIdCiudad() {
+        return idCiudad;
     }
 
-    public void setCiudadActual(Ciudad ciudadActual) {
-		 this.ciudadActual = ciudadActual;
+    public void setIdCiudad(Integer ciudadActual) {
+		 this.idCiudad = ciudadActual;
+    }
+    
+
+    public Camion toPojo() {
+    	Camion c = new Camion();
+    	c.setId(id);
+    	c.setMarca(marca);
+    	c.setModelo(modelo);
+    	c.setPatente(patente);
+    	return c;
     }
 }
-

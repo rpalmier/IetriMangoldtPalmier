@@ -13,37 +13,48 @@
     <div class="container mt-4">
     <h1>Consultar Caminos Vecinos</h1>
     
-    <form th:action="@{/caminos/vecinos}" class="row row-cols-lg-auto g-3 align-items-center" method="get">
-    	<div class="col-12">
-        	<label class="visually-hidden" for="codigoPostal">Código Postal de Origen:</label>
-        	<input type="text" class="form-control" id="codigoPostal" name="codigoPostal" placeholder="Código Postal de Origen:" required maxlength="4">
-        	
+    <form th:action="@{/caminos}" th:object="${formBean}" class="row g-3" method="post">
+		
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="col-12 alert alert-danger" role="alert"  />
+		<div class="col-3">
+			
+	
+        	<label class="form-label" for="codigoPostal">Código Postal de Origen:</label>
+        	<input type="text" class="form-control" id="codigoPostal" th:field="*{codpost}" placeholder="Código Postal de Origen:"  maxlength="4">
+			<div th:if="${#fields.hasErrors('codpost')}" class="col-12 invalid-feedback" th:errors="*{codpost}" />
+	
+
         </div>
-        <div class="col-12">
-        	<button type="submit" class="btn btn-primary">Consultar</button>
+        <div class="col-3">
+        	<input type="submit"  name="action"  value="Buscar" class="btn btn-primary"></input>
+			<input type="submit"  name="action"  value="Cancelar" class="btn btn-danger"></input>
         </div>
     </form>
 
     <div class="mt-5" th:if="${caminos}">
         <h2>Resultados</h2>
+		<h3>Ciudad origen: <span th:text="${caminos[0].ciudadOrigen.nombre}" /> - Clima actual: <span th:text="${caminos[0].ciudadDestino.climaActual}" /></h3>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID Camino</th>
                     <th scope="col">Ciudad Destino</th>
+					<th scope="col">Estado del Clima</th>
                     <th scope="col">Estado del Camino</th>
-                    <th scope="col">Estado del Clima</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="camino : ${caminos}">
-                    <td th:text="${camino.id}">ID Camino</td>
-                    <td th:text="${camino.ciudadDestino.nombre}">Ciudad Destino</td>
-                    <td th:text="${camino.estadoCamino}">Estado del Camino</td>
-                    <td th:text="${camino.estadoClima}">Estado del Clima</td>
+                <tr th:each="c : ${caminos}">
+                    <td th:text="${c.identificadorTramo}">ID Camino</td>
+                    <td th:text="${c.ciudadDestino.nombre}">Ciudad Destino</td>
+					<td th:text="${c.ciudadDestino.climaActual}">Estado del Clima</td>
+                    <td th:text="${c.estadoCamino}">Estado del Camino</td>
+                    
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
     <!-- Incluir el footer -->
     <div th:replace="~{fragments/footer :: footer}"></div>

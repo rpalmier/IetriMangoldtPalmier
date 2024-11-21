@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Camiones</title>
+    <head th:replace="~{fragments/header :: header}"></head>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="container mt-4">
+		<div class="row">
+        <h1>Lista de Camiones</h1>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/camiones/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Camión</a>
+        	</div>
+			<br>
+			<br>
+			</div>
+		<table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Patente</th>
+                    <th>Ciudad actual</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr th:each="camion : ${camiones}">
+                    <td th:text="${camion.marca}">Marca</td>
+                    <td th:text="${camion.modelo}">Modelo</td>
+                    <td th:text="${camion.patente}">Patente</td>
+                    <td th:text="${camion.ciudadActual}">Ciudad actual</td>
+                    <td>
+                        <a th:href="@{/camiones/editar/{id}(id=${camion.id})}" class="btn btn-info btn-sm">Editar</a>
+						<input type="hidden" name="_method" value="delete"/>
+						<a th:href="@{/camiones/delete/{id}(id=${camion.id})}" class="btn btn-danger btn-sm"  onclick="return confirm('¿Estás seguro de que deseas eliminar este camión?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+	<!-- Incluir el footer -->
+	<div th:include="~{fragments/footer :: footer}"></div>
+</body>
+</html>
