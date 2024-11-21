@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camino;
+import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Tramo;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CaminoRepository;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CiudadRepository;
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.EstadoCaminoRepository;
 
 @Service
 public class CaminioService {
@@ -20,7 +19,7 @@ public class CaminioService {
 
 	
 
-	public List<Camino> getCaminosByCiudadOrigen(Integer codigoPostal) {
+	public List<Tramo> getCaminosByCiudadOrigen(Integer codigoPostal) {
 	        if (codigoPostal == null) {
 	            throw new IllegalArgumentException("El código postal es obligatorio.");
 	        }
