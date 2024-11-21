@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultado - Buscar Flota</title>
+</head>
+<body>
+    <h1>Resultado de la búsqueda</h1>
+
+    <div th:if="${camiones != null and !camiones.isEmpty()}">
+        <p><strong>Ciudad:</strong> <span th:text="${camiones[0].ciudad.nombre}"></span></p>
+        <p><strong>Código Postal:</strong> <span th:text="${camiones[0].ciudad.codigoPostal}"></span></p>
+        <p><strong>Flota de Camiones:</strong></p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Patente</th>
+                    <th>Marca</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="camion : ${camiones}">
+                    <td th:text="${camion.patente}"></td>
+                    <td th:text="${camion.marca}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${camiones == null or camiones.isEmpty()}">
+        <p>No se encontraron camiones en la ciudad especificada.</p>
+    </div>
+
+    <a th:href="@{/flota}">Realizar otra búsqueda</a>
+</body>
+</html>

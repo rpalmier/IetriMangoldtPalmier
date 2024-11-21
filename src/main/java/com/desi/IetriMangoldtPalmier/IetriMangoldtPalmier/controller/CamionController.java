@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.forms.CamionForm;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camion;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Ciudad;
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.repository.CamionRepository;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CamionService;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CiudadService;
-import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.impl.CamionServiceImpl;
 
 @Controller
 public class CamionController {

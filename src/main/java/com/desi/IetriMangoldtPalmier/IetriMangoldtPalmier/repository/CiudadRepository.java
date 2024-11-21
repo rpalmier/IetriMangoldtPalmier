@@ -8,4 +8,7 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
 	
     boolean existsByCodigoPostal(Integer codigoPostal); 
     
+    Ciudad findByCodigoPostal(String codigoPostal);
+    
+    
 }

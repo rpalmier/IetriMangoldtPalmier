@@ -19,6 +19,41 @@ public class EstadoCamino {
 
     @Column(name = "estado_clima", length = 50)
     private String estadoClima;
+    
+    // Getters y setters
 
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public Camino getCamino() {
+		return camino;
+	}
+
+	public void setCamino(Camino camino) {
+		this.camino = camino;
+	}
+
+	public String getEstadoCamino() {
+		return estadoCamino;
+	}
+
+	public void setEstadoCamino(String estadoCamino) {
+		this.estadoCamino = estadoCamino;
+	}
+
+	public String getEstadoClima() {
+		return estadoClima;
+	}
+
+	public void setEstadoClima(String estadoClima) {
+		this.estadoClima = estadoClima;
+	}
+    
+     
    
 }

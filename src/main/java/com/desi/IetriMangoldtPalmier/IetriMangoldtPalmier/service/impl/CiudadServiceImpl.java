@@ -33,4 +33,15 @@ public class CiudadServiceImpl implements CiudadService {
     public List<Ciudad> getCiudades() {
         return ciudadRepository.findAll();
     }
+
+    @Override
+    public Ciudad obtenerCiudadPorCodigoPostal(String codigoPostal) {
+        return ciudadRepository.findByCodigoPostal(codigoPostal);
+    }
+
+    @Override
+    public String obtenerEstadoClima(String codigoPostal) {
+        Ciudad ciudad = ciudadRepository.findByCodigoPostal(codigoPostal);
+        return ciudad != null ? ciudad.getClima().getEstado() : "Clima desconocido";
+    }
 }

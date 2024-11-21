@@ -2,8 +2,6 @@ package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.model.Camion;
 
 public interface CamionService {
@@ -12,4 +10,10 @@ public interface CamionService {
     Camion getCamionById(Integer id);
     Camion updateCamion(Camion camion);
     void deleteCamion(Integer id);
+    
+    List<Camion> findCamionesByCodigoPostal(String codigoPostal);
+
+    Camion getCamionPorPatente(String patente);
+  
+    
 }

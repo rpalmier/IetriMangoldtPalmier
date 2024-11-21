@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Buscar Camión</title>
+</head>
+<body>
+    <h1>Buscar Camión</h1>
+    <form th:action="@{/buscarCamion}" th:object="${formBean}" method="post">
+        <label for="patente">Patente:</label>
+        <input type="text" id="patente" th:field="*{patente}" />
+        <div th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></div>
+
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${#fields.hasErrors('formBean')}">
+        <p th:each="error : ${#fields.errors('formBean')}" th:text="${error}"></p>
+    </div>
+</body>
+</html>

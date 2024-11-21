@@ -1,7 +1,6 @@
 package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,12 +39,21 @@ public class CamionServiceImpl implements CamionService {
 		camionRepository.deleteById(id);
 		
 	}
+	
+    @Override
+    public Camion getCamionPorPatente(String patente) {
+        return camionRepository.findByPatente(patente)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró un camión con la patente: " + patente));
+    }
 
-	/*
-	@Override
-	public void save(Camion camion) {
-		camionRepository.save(camion);
-		
-	}*/
+    @Override
+    public List<Camion> findCamionesByCodigoPostal(String codigoPostal) {
+        return camionRepository.findByCiudadCodigoPostal(codigoPostal);
+    }	
+
 
 }
+
+
+	
+

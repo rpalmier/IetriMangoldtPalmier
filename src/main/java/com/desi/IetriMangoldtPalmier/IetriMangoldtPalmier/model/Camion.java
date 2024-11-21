@@ -94,5 +94,7 @@ public class Camion {
     public void setCiudadActual(Ciudad ciudadActual) {
 		 this.ciudadActual = ciudadActual;
     }
+
+
 }
 

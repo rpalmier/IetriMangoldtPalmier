@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultado - Buscar Camión</title>
+</head>
+<body>
+    <h1>Resultado de la búsqueda</h1>
+
+    <div th:if="${camion != null}">
+        <p><strong>Patente:</strong> <span th:text="${camion.patente}"></span></p>
+        <p><strong>Marca:</strong> <span th:text="${camion.marca}"></span></p>
+        <p><strong>Ciudad:</strong> <span th:text="${camion.ciudad.nombre}"></span></p>
+        <p><strong>Código Postal:</strong> <span th:text="${camion.ciudad.codigoPostal}"></span></p>
+    </div>
+
+    <div th:if="${camion == null}">
+        <p>No se encontró un camión con la patente especificada.</p>
+    </div>
+
+    <a th:href="@{/buscarCamion}">Realizar otra búsqueda</a>
+</body>
+</html>
