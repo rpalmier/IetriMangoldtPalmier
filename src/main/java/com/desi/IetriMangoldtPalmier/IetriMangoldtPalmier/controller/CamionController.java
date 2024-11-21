@@ -3,6 +3,7 @@ package com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,8 @@ import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CamionService;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.CiudadService;
 import com.desi.IetriMangoldtPalmier.IetriMangoldtPalmier.service.impl.CamionServiceImpl;
 
+import jakarta.validation.Valid;
+
 @Controller
 public class CamionController {
 	
@@ -30,7 +33,7 @@ public class CamionController {
 	private CiudadService ciudadService;
 
 	
-    @GetMapping({"/camiones", "/"})
+    @GetMapping({"/camiones"})
     public String viewCamionesPage(Model model) {
     	model.addAttribute("camiones", camionService.getAllCamiones());
         return "camiones";
@@ -48,15 +51,27 @@ public class CamionController {
     }
     
     @PostMapping("/camiones")
-    public String saveCamion(@ModelAttribute("camion") CamionForm camion,BindingResult result, Model model) {
-    	if(result.hasErrors()) {
-        	model.addAttribute("camion", camion);
-        	return "editar_camion";
+    public String saveCamion(@ModelAttribute("camion") @Valid CamionForm camion, BindingResult result, Model model) throws Exception {
+        if (result.hasErrors()) {
+            model.addAttribute("camion", camion);
+            return "crear_camion";
         }
-    	Camion modelCamion =  camion.toPojo();
-    	modelCamion.setCiudadActual(ciudadService.getCiudadById(camion.getIdCiudad()) );
-    	camionService.saveCamion(modelCamion);
-    	return "redirect:/camiones";
+
+        Camion modelCamion = camion.toPojo();
+        modelCamion.setCiudadActual(ciudadService.getCiudadById(camion.getIdCiudad()));
+
+        try {
+            camionService.saveCamion(modelCamion);
+        } catch (IllegalArgumentException e) {
+            result.rejectValue("patente", "error.patente", "Ya existe un camión con la misma patente.");
+            
+            result.rejectValue("modelo", "error.modelo", "El modelo debe ser mayor o igual a 1995 y menor o igual a 2024.");
+            
+            model.addAttribute("camion", camion);
+            return "crear_camion";
+        }
+
+        return "redirect:/camiones";
     }
     
     
@@ -67,17 +82,29 @@ public class CamionController {
     }
     
     @PostMapping("/camiones/{id}")
-    public String updateCamion(@PathVariable Integer id, @ModelAttribute("camion") CamionForm camion,BindingResult result, Model model) {
-        if(result.hasErrors()) {
-        	model.addAttribute("camion", model);
-        	return "editar_camion";
+    public String updateCamion(@PathVariable Integer id, @ModelAttribute("camion") @Valid CamionForm camion, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("camion", camion);
+            return "editar_camion";
         }
-    	Camion existingCamion =  camion.toPojo();
         
-        existingCamion.setCiudadActual(ciudadService.getCiudadById(camion.getIdCiudad()) );
-        
-        camionService.updateCamion(existingCamion);
-        
+        Camion existingCamion = camion.toPojo();
+        existingCamion.setId(id);
+        existingCamion.setCiudadActual(ciudadService.getCiudadById(camion.getIdCiudad()));
+
+        try {
+            camionService.updateCamion(existingCamion);
+        } catch (DataIntegrityViolationException e) {
+            model.addAttribute("error", "La patente ya está registrada.");
+            model.addAttribute("camion", camion);
+            return "editar_camion";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Error desconocido. Por favor intentá de nuevo.");
+            model.addAttribute("camion", camion);
+            return "editar_camion";
+        }
+
         return "redirect:/camiones";
     }
 

@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class CamionForm {
@@ -25,14 +27,14 @@ public class CamionForm {
 
     
     @NotNull(message = "El modelo es requerido.")
-    private String modelo;
+    @Min(value = 1995, message = "El modelo debe ser mayor o igual a 1995.")
+    @Max(value = 2024, message = "El modelo debe ser menor o igual a 2024.")
+    private Integer modelo;
 
     
     @NotNull(message = "La ciudad actual es requerida.")
     private Integer idCiudad;
     
-
-    // Constructor con todos los atributos
     public CamionForm(Camion c) {
     	this.id = c.getId();
         this.patente = c.getPatente();
@@ -40,7 +42,7 @@ public class CamionForm {
         this.modelo = c.getModelo();
     }
 
-    // Constructor vacío
+
     public CamionForm() {
     }
 
@@ -69,11 +71,11 @@ public class CamionForm {
         this.marca = marca;
     }
 
-    public String getModelo() {
+    public Integer getModelo() {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
+    public void setModelo(Integer modelo) {
 		 this.modelo = modelo;
     }
     

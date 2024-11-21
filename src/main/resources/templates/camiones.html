@@ -11,6 +11,11 @@
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div class="container mt-4">
+		
+		<div th:if="${error}" class="alert alert-danger mt-3">
+		    <p th:text="${error}"></p>
+		</div>
+		
 		<div class="row">
         <h1>Lista de Camiones</h1>
 		</div>
@@ -40,7 +45,7 @@
                     <td>
                         <a th:href="@{/camiones/editar/{id}(id=${camion.id})}" class="btn btn-info btn-sm">Editar</a>
 						<input type="hidden" name="_method" value="delete"/>
-						<a th:href="@{/camiones/delete/{id}(id=${camion.id})}" class="btn btn-danger btn-sm"  onclick="return confirm('¿Estás seguro de que deseas eliminar este camión?');">Eliminar</a>
+						<a th:href="@{/camiones/delete/{id}(id=${camion.id})}" class="btn btn-danger btn-sm"  onclick="return confirm('¿Estás seguro de que querés eliminar este camión?');">Eliminar</a>
                     </td>
                 </tr>
             </tbody>

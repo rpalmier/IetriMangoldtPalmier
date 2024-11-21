@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -30,7 +32,7 @@ public class Camion {
 
     @Column(name = "modelo", nullable = false)
     @NotNull(message = "El modelo es requerido.")
-    private String modelo;
+    private @NotNull(message = "El modelo es requerido.") @Min(value = 1995, message = "El modelo debe ser mayor o igual a 1995.") @Max(value = 2024, message = "El modelo debe ser menor o igual a 2024.") Integer modelo;
 
     @ManyToOne
     @JoinColumn(name = "ciudad_actual")
@@ -41,7 +43,7 @@ public class Camion {
     // Constructor con todos los atributos
     public Camion(@NotNull(message = "La patente es requerida.") String patente,
                   @NotNull(message = "La marca es requerida.") String marca,
-                  @NotNull(message = "El modelo es requerido.") String modelo,
+                  @NotNull(message = "El modelo es requerido.") Integer modelo,
                   @NotNull(message = "La ciudad actual es requerida.") Ciudad ciudadActual) {
         this.patente = patente;
         this.marca = marca;
@@ -78,11 +80,11 @@ public class Camion {
         this.marca = marca;
     }
 
-    public String getModelo() {
+    public @NotNull(message = "El modelo es requerido.") @Min(value = 1995, message = "El modelo debe ser mayor o igual a 1995.") @Max(value = 2024, message = "El modelo debe ser menor o igual a 2024.") Integer getModelo() {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
+    public void setModelo(Integer modelo) {
 		 this.modelo = modelo;
     }
     

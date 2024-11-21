@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Gestión de Camiones - Editar</title>
 <head th:replace="~{fragments/header :: header}"></head>
-</head>
 
 <body>
 	
@@ -16,6 +15,10 @@
 			
 				<h1 class="text-center">Edición de Camión</h1>
 				<div class="card-body">
+					<div th:if="${error}" class="alert alert-danger">
+					    <p th:text="${error}"></p>
+					</div>
+
 					<form th:action="@{/camiones/{id}(id=${camion.id})}" th:object="${camion}" method="POST">
 						<div class="form-group">
 							<label>Marca: </label>
@@ -26,15 +29,21 @@
 						
 						<div class="form-group">
 							<label>Modelo: </label>
-							<input type="text" name="modelo" th:field="*{modelo}" class="form-control" placeholder="Ingrese el modelo" required>	
+							<input type="text" name="modelo" th:field="*{modelo}" class="form-control" placeholder="Ingrese el modelo" required>
+							<div th:if="${#fields.hasErrors('modelo')}" class="alert alert-danger">
+							    <p th:errors="*{modelo}"></p>
+							</div>
 						</div>
 						
 						<br>
 						
 						<div class="form-group">
-							<label>Patente: </label>
-							<input type="text" name="patente" th:field="*{patente}" class="form-control" placeholder="Ingrese la patente" required>	
-						</div>						
+						    <label>Patente: </label>
+						    <input type="text" name="patente" th:field="*{patente}" class="form-control" placeholder="Ingrese la patente" required>
+						    <div th:if="${#fields.hasErrors('patente')}" class="alert alert-danger">
+						        <p th:errors="*{patente}"></p>
+						    </div>
+						</div>					
 
 						<br>
 					
